@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="jquery-2.1.1.min.js" ></script>
+</head>
+<body>
+<script language="javascript">
+    var second = 0;
+    var minute = 0;
+    var hour = 0;
+    window.setInterval("OnlineStayTime();", 1000);
+    function OnlineStayTime() {
+        second++;
+        if (second == 60) {
+            second = 0;
+            minute++;
+        }
+        if (minute == 60) {
+            minute = 0;
+            hour++;
+        }
+//window.status = "停留时间" + hour + ":" + minute + ":" + second;
+//接触注释讲在页面关闭时弹出用户在页面停留时间。
+    }
+</script>
+<input class="alr" name="" type="button" value="查看用户打开页面停留时间" />
+<script language="javascript">
+    $(".alr").click(function(){ alert("停留时间" + hour + ":" + minute + ":" + second) });
+</script>
+</body>
+</html>
