@@ -1,3 +1,3 @@
 <?php
-print_r($_GET);
+include("connect.php");//连接数据库文件
 ?>

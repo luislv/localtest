@@ -286,19 +286,25 @@
             var vistattime = currentTime();   //访问页面时间
             var vlstatIPAddress = document.localName;   //访问IP地址
             var vlstatStayTime = OnlineStayTime();   //停留页面时间
-            var vlstatAction = "logStatistics.php";
-            var p = "cookieId=" + vlstatCookieId + "&ua=" + vlstatUA + "&brower=" + vlstatBrower + "&operateSystem=" + vlstatOS + "&currentUrl=" + vlstatURL + "&previoustUrl=" + vlstatREFURL + "&currentTime=" + vistattime + "&ip=" + vlstatIPAddress + "&OnlineStayTime=" + vlstatStayTime;
-            var urlGo = vlstatAction + "?" + p;  //用户信息
-            alert(p); //本地测试
+            var vlstatAction = "http://www.localtest.com/logStatistics.php";
+            var prm = "cookieId=" + vlstatCookieId + "&ua=" + vlstatUA + "&brower=" + vlstatBrower + "&operateSystem=" + vlstatOS + "&currentUrl=" + vlstatURL + "&previoustUrl=" + vlstatREFURL + "&currentTime=" + vistattime + "&ip=" + vlstatIPAddress + "&OnlineStayTime=" + vlstatStayTime;
+            var urlGo = vlstatAction + "?" + prm;  //用户信息
+
+            alert(urlGo); //本地测试
+
             createXMLHttpRequest();
             xmlHttp.open('GET', urlGo);
             xmlHttp.send(null);
+
+
         });
     });
     function ccc(){
         alert (333);
     }
     window.onload = ccc();
+
 </script>
+
 </body>
 </html>
