@@ -10,12 +10,21 @@
 <script language="javascript">
 //获取本地IP
 function cc(){
-    window.open("http://www.baidu.com/")
+    var a = navigator.userAgent.toLowerCase();
+    var ag = ['chrome','safari','ie','firefox'];
+    var agv = ['chrome\/(\d+)','safari\/(\d+)','ie\/(\d+)','firefox\/(\d+)'];
+    for(i in ag){
+        if (0 <= a.indexOf(ag[i])) {
+            var reg=eval("/"+ag[i]+"\\\/([0-9\\\.]+)/");
+            d = (b = a.match(reg)) ? b[1] : - 1;
+            this.agent.name=ag[i];
+            this.agent.version=d;
+            return ;
+        }
+    }
 }
-$(window).on('beforeunload',function(){
-
-    window.open("http://www.baidu.com/")
-});
+    var ccc = cc();
+    alert (ccc);
 </script>
 </body>
 </html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jquery-1.8.3.min.js"></script>
+</head>
+<body>
+
+</body>
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script type="text/javascript">
+   /*
+      window.onbeforeunload=stoprefresh; //关闭前的事件
+      function stoprefresh()
+      {
+          //  return "\n警告！~  \n数据查询中，确定继续？\n";
+          //传递参数
+          var data = {
+              'browser':getBrower(),                      //获取浏览器
+              'operateSystem':getPlatform(),             //获取操作系统
+              'currentUrl': window.location.href,     //当前网页的url
+              'previoustUrl': document.referrer,       //前一个网页的url
+              'currentTime' : currentTime(),             //获取当前时间
+              // 'ip' : ipAddr(),                              //获取当前用户IP地址
+              'accessTime' : accessTime()             //获取页面停留时间
+          };
+          //get方式传参数
+          $.get('http://www.localtest.com/logStatistics.php',data,function(data1){});
+      }
+  */
+   window.onbeforeunload=stoprefresh; //关闭前的事件
+   function stoprefresh()
+   {
+       $.get('http://www.localtest.com/logStatistics.php',data,function(data1){});
+       return "\n警告！~  \n数据查询中，确定继续？\n";
+       //传递参数
+       var data = {
+           'browser':getBrower(),                     //获取浏览器
+           'operateSystem':getPlatform(),             //获取操作系统
+           'currentUrl': window.location.href,        //当前网页的url
+           'previoustUrl': document.referrer,         //前一个网页的url
+           'cookieId': getCookie(),                   //获取cookieid
+           'currentTime' : currentTime(),             //获取当前时间
+           'ip' : returnCitySN["cip"],                //获取当前用户IP地址
+           'area':                                    //获取当前用户ip地址
+           'accessTime' : accessTime()                //获取页面停留时间
+
+       };
+       //get方式传参数
+
+       return
+//       alert(111)
+
+   }
+
+    /**
+     * 获取UA
+     */
+    function getUA() {
+        var ua = navigator.userAgent;
+        if (ua.length > 250) {
+            ua = ua.substring(0, 250);
+        }
+        return ua;
+    }
+    /**
+     * 获取浏览器类型
+     */
+    function getBrower() {
+        var ua = getUA();
+        if (ua.indexOf("Opera") != -1) {
+            return ('Opera');
+        }
+        else if (ua.indexOf("MSIE") != -1) {
+            return ('Internet Explorer');
+        }
+        else if (ua.indexOf("Firefox") != -1) {
+            return ('Firefox');
+        }
+        else if (ua.indexOf("Chrome") != -1) {
+            return ('Chrome');
+        }
+        else if (ua.indexOf("Netscape") != -1) {
+            return ('Netscape');
+        }
+        else if (ua.indexOf("Safari") != -1) {
+            return ('Safari');
+        }
+        else {
+            return ('无法识别的浏览器。');
+        }
+    }
+    /**
+     * 获取操作系统-详细
+     */
+    function getPlatform() {
+        var sUserAgent = navigator.userAgent;
+        var isWin = (navigator.platform === "Win32") || (navigator.platform === "Windows");
+        var isMac = (navigator.platform === "Mac68K") || (navigator.platform === "MacPPC") || (navigator.platform === "Macintosh") || (navigator.platform === "MacIntel");
+        var bIsIpad = sUserAgent.match(/ipad/i) === "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) === "iphone os";
+        var isUnix = (navigator.platform === "X11") && !isWin && !isMac;
+        var isLinux = (String(navigator.platform).indexOf("Linux") > -1);
+        var bIsAndroid = sUserAgent.toLowerCase().match(/android/i) === "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) === "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) === "windows mobile";
+        if (isMac)
+            return "Mac";
+        if (isUnix)
+            return "Unix";
+        if (isLinux) {
+            if (bIsAndroid)
+                return "Android";
+            else
+                return "Linux";
+        }
+        if (bIsCE || bIsWM) {
+            return 'wm';
+        }
+        if (isWin) {
+            var isWin2K = sUserAgent.indexOf("Windows NT 5.0") > -1 || sUserAgent.indexOf("Windows 2000") > -1;
+            if (isWin2K)
+                return "Win2000";
+            var isWinXP = sUserAgent.indexOf("Windows NT 5.1") > -1 ||
+                    sUserAgent.indexOf("Windows XP") > -1;
+            if (isWinXP)
+                return "WinXP";
+            var isWin2003 = sUserAgent.indexOf("Windows NT 5.2") > -1 || sUserAgent.indexOf("Windows 2003") > -1;
+            if (isWin2003)
+                return "Win2003";
+            var isWinVista = sUserAgent.indexOf("Windows NT 6.0") > -1 || sUserAgent.indexOf("Windows Vista") > -1;
+            if (isWinVista)
+                return "WinVista";
+            var isWin7 = sUserAgent.indexOf("Windows NT 6.1") > -1 || sUserAgent.indexOf("Windows 7") > -1;
+            if (isWin7)
+                return "Win7";
+            var isWin8 = sUserAgent.indexOf("Windows NT 6.2") > -1 || sUserAgent.indexOf("Windows 8") > -1;
+            if (isWin8)
+                return "Win8";
+
+        }
+        return "other";
+    }
+
+    /**
+     * 获取访问时间
+     */
+    function currentTime() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth();
+        var date = now.getDate();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+        var currentTime = year + "-" + month + "-" + date + "-" + hours + ":" + minutes + ":" + seconds;
+        return currentTime;
+    }
+    /**
+     * 获取停留页面时间
+     */
+    var stateSecond = 0;
+    var stateMinute = 0;
+    var stateHour = 0;
+    window.setInterval("accessTime();", 1000);
+    function accessTime() {
+        var stateTime = stateHour + ":" + stateMinute + ":" + stateSecond;
+        stateSecond++;
+        if (stateSecond == 60) {
+            stateSecond = 0;
+            stateMinute++;
+        }
+        if (stateMinute == 60) {
+            stateMinute = 0;
+            stateHour++;
+        }
+        return stateTime;
+    }
+    window.onload = accessTime();
+//离开页面执行
+
+
+
+
+
+</script>

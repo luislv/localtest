@@ -108,64 +108,41 @@ function getBrower() {
  * 获取操作系统-详细
  */
 function getPlatform() {
-    var sUserAgent = navigator.userAgent;
-    var isWin = (navigator.platform === "Win32") || (navigator.platform === "Windows");
-    var isMac = (navigator.platform === "Mac68K") || (navigator.platform === "MacPPC") || (navigator.platform === "Macintosh") || (navigator.platform === "MacIntel");
-    var bIsIpad = sUserAgent.match(/ipad/i) === "ipad";
-    var bIsIphoneOs = sUserAgent.match(/iphone os/i) === "iphone os";
-    var isUnix = (navigator.platform === "X11") && !isWin && !isMac;
-    var isLinux = (String(navigator.platform).indexOf("Linux") > -1);
-    var bIsAndroid = sUserAgent.toLowerCase().match(/android/i) === "android";
-    var bIsCE = sUserAgent.match(/windows ce/i) === "windows ce";
-    var bIsWM = sUserAgent.match(/windows mobile/i) === "windows mobile";
-    if (isMac)
-        return "Mac";
-    if (isUnix)
-        return "Unix";
-    if (isLinux) {
-        if (bIsAndroid)
-            return "Android";
-        else
+    //获取用户代理
+    var ua = navigator.userAgent;
+    if (ua.indexOf("Windows NT 5.1") != -1) return "Windows XP";
+    if (ua.indexOf("Windows NT 6.0") != -1) return "Windows Vista";
+    if (ua.indexOf("Windows NT 6.1") != -1) return "Windows 7";
+    if (ua.indexOf("Windows NT 6.2") != -1) return "Windows 8";
+    if (ua.indexOf("Windows NT 10.0") != -1) return "Windows 10";
+    if (ua.indexOf("iPhone") != -1) return "iPhone";
+    if (ua.indexOf("iPad") != -1) return "iPad";
+    if (ua.indexOf("Linux") != -1) {
+        var index = ua.indexOf("Android");
+        if (index != -1) {
+            //os以及版本
+            var os = ua.slice(index, index + 13);
+
+            //手机型号
+            var index1 = ua.lastIndexOf(";");
+
+            var index2 = ua.indexOf("Build");
+            var type = ua.slice(index1 + 1, index2);
+            return type + os;
+        } else {
             return "Linux";
+        }
     }
-    if (bIsCE || bIsWM) {
-        return 'wm';
-    }
-    if (isWin) {
-        var isWin2K = sUserAgent.indexOf("Windows NT 5.0") > -1 || sUserAgent.indexOf("Windows 2000") > -1;
-        if (isWin2K)
-            return "Win2000";
-        var isWinXP = sUserAgent.indexOf("Windows NT 5.1") > -1 ||
-            sUserAgent.indexOf("Windows XP") > -1;
-        if (isWinXP)
-            return "WinXP";
-        var isWin2003 = sUserAgent.indexOf("Windows NT 5.2") > -1 || sUserAgent.indexOf("Windows 2003") > -1;
-        if (isWin2003)
-            return "Win2003";
-        var isWinVista = sUserAgent.indexOf("Windows NT 6.0") > -1 || sUserAgent.indexOf("Windows Vista") > -1;
-        if (isWinVista)
-            return "WinVista";
-        var isWin7 = sUserAgent.indexOf("Windows NT 6.1") > -1 || sUserAgent.indexOf("Windows 7") > -1;
-        if (isWin7)
-            return "Win7";
-        var isWin8 = sUserAgent.indexOf("Windows NT 6.2") > -1 || sUserAgent.indexOf("Windows 8") > -1;
-        if (isWin8)
-            return "Win8";
-        var isWin10 = sUserAgent.indexOf("Windows NT 10.0") > -1 || sUserAgent.indexOf("Windows 10") > -1;
-        if (isWin10)
-            return "Win10";
-    }
-    return "other";
+    return "Unknow";
 
 }
-
 /**
  * 获取访问时间
  */
 function currentTime() {
     var now = new Date();
     var year = now.getFullYear();
-    var month = now.getMonth()+1;
+    var month = now.getMonth() + 1;
     var date = now.getDate();
     var hours = now.getHours();
     var minutes = now.getMinutes();
@@ -186,8 +163,8 @@ function createXMLHttpRequest() {
 }
 
 $(function () {
-    var pre = encodeURIComponent(document.referrer);
-    alert(pre);
+    //  var pre = encodeURIComponent(document.referrer);
+    //  alert(pre);
     var postdata = {
         'browser': getBrower(),                                 //浏览器版本
         'operateSystem': getPlatform(),                          //操作系统版本
@@ -200,13 +177,13 @@ $(function () {
     };
 
     $.ajax({
-        type : "get",
-        async:false,
-        url : "http://10.1.1.132:8080/logStatistics/",
-        dataType : "jsonp",
-        data :postdata,
+        type: "get",
+        async: false,
+        url: "http://10.1.1.132:8080/logStatistics/",
+        dataType: "jsonp",
+        data: postdata,
         jsonp: "callbackparam",//服务端用于接收callback调用的function名的参数
-        jsonpCallback:"success_jsonpCallback"//callback的function名称
+        jsonpCallback: "success_jsonpCallback"//callback的function名称
 
     });
 
