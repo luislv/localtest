@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src = "../global_files/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+    function transfer()
+    {
+        var dat = $( "#sel" ).val();
+        $.post( './post.php', {data:dat}, function( data )
+        {
+            //var cache = data.split( "," );
+            $( '#sub' ).val( data );
+        });
+    }
+</script>
+<select id = "sel" onchange = "transfer()">
+    <option value = "welcome">欢迎</option>
+    <option value = "hello">你好</option>
+    <option value = "pity">可惜</option>
+    <option value = "ok">好的</option>
+</select>
+<input type = "text" id = "sub" value = "name" />
+
+</body>
+</html>
