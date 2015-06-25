@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PHP+jQuery+Ajax+Mysql实现发表心情功能</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<style type="text/css">
+.demo{width:720px; margin:100px auto; text-align:center; position:relative}
+#mood{text-align:center;}
+#mood ul li,#mood ul li div.pillar{display:inline-block;display:-moz-inline-stack;zoom:1;*display:inline;}
+#mood ul li{width:80px; vertical-align: bottom; font-size:14px}
+#mood ul li span{ font-size:12px}
+#mood ul li div.pillar{height:20px; width:80px; background:url(images/bar.gif) repeat-y center;}
+img{border:1px solid #fff}
+.face{padding-top:10px; cursor:pointer}
+.face:hover{background:#f2faed}
+.selected{border:1px solid #3c0; background:url(images/checkbox.gif) no-repeat right bottom}
+#msg{position:absolute; top:-60px; left:250px; color:#f60; font-size:14px; font-weight:bold}
+</style>
+<script type="text/javascript" src="../global_files/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+		type: 'GET',
+		url: 'mood.php',
+		cache: false,
+		data: 'id=1',
+		dataType: 'json',
+		error: function(){
+			alert('出错了！');
+		},
+		success: function(json){
+			if(json){
+				$.each(json,function(index,array){
+					var str = "<li><span>"+array['mood_val']+"</span><div class=\"pillar\" style=\"height:"+array['height']+"px;\"></div><div class=\"face\" rel=\""+array['mid']+"\"><img src=\"images/"+array['mood_pic']+"\"><br/>"+array['mood_name']+"</div></li>";
+            		$("#mood ul").append(str); 
+       			}); 
+			}
+		}
+	});
+	$(".face").live('click',function(){
+		var face = $(this);
+		var mid = face.attr("rel");
+		var value = face.parent().find("span").html();
+		var val = parseInt(value)+1;
+		$.post("mood.php?action=send",{moodid:mid,id:1},function(data){
+			if(data>0){
+				face.prev().css("height",data+"px");
+				face.parent().find("span").html(val);
+				face.find("img").addClass("selected");
+			}else{
+				$("#msg").show().html(data).fadeOut(2000);
+			}
+		});
+	});
+});
+</script>
+</head>
+
+<body>
+<div id="header">
+   <div id="logo"><h1><a href="http://www.helloweba.com" title="返回helloweba首页">helloweba</a></h1></div>
+</div>
+
+<div id="main">
+  <h2 class="top_title"><a href="http://www.helloweba.com/view-blog-186.html">PHP+jQuery+Ajax+Mysql实现发表心情功能</a></h2>
+  <div class="demo">
+  	<div id="msg"></div>
+    <div id=mood>
+     <ul></ul>
+    </div>
+  </div>
+</div>
+<div id="footer">
+    <p>Powered by helloweba.com  允许转载、修改和使用本站的DEMO，但请注明出处：<a href="http://www.helloweba.com">www.helloweba.com</a></p>
+</div>
+</body>
+</html>
