@@ -8,9 +8,6 @@ $(function(){
 		// 		$(this).addClass('fix_bg').parent().siblings().find('a').removeClass('fix_bg');
 		// 	});
 	})
-
-
-
 jQuery(document).ready(function($) {
 	try{
 	var f1 = $('.floor[data-slide="1"]').offset().top;
@@ -47,7 +44,7 @@ jQuery(document).ready(function($) {
 				return k+1;
 			}
 		}
-	}	
+	}
 	function changefl(fno){
 		$('.floor_nav_fix li').find('a').removeClass('curr');
 		$('.floor_nav_fix li[data-slide="'+fno+'"]').find('a').addClass('curr');
@@ -55,9 +52,11 @@ jQuery(document).ready(function($) {
 }catch(e){
 	console.log(e);
 }
-
+ //   $(".floor_nav_fix li").click(function(){
+ //       $(".floor_nav_fix li").find('a').removeClass('curr');
+ //       $(this).find('a').addClass('curr');
+  //  });
 });
-
 function gotop() {
 	$('body,html').animate({
 		scrollTop : 0
@@ -68,7 +67,9 @@ function gotofloor(thiz) {
 	var pos = $('.floor[data-slide="' + dataslide + '"]').offset().top;
 	$("html,body").animate({
 		scrollTop : pos+1
-	}, 800);
-	$(".floor_nav_fix li").find('a').removeClass('curr');
-	$(thiz).find('a').addClass('curr');
+	}, 400,function(){
+        $(".floor_nav_fix li").find('a').removeClass('curr');
+        $(thiz).find('a').addClass('curr');
+    });
+
 }
