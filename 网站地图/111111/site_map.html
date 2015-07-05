@@ -19,15 +19,10 @@
 	<main>
 
 	<div class="main">
-		<!-- banner图 -->
-		<div class="links_banner layout">
-			<img src="./static/site_map/site_map_banner.jpg">
-		</div>
 		<!-- 地图块 -->
-		<div class="nav_site_map">
+		<div class="nav_site_map" id="container">
 		    <!-- 挂号块 -->
-			<div class="nav_common floor" id="c_1" data-slide="1">
-                <div class="nav_common_con">
+			<div class="nav_common floor section" id="c_1" data-slide="1">
 				<div class="common_title"><a>挂号</a><span class="tt_btn"></span></div>
 
 				<ul  class="common_con">
@@ -37,7 +32,7 @@
 							<a href="#">医院</a>
 						</div>
 					</li>
-					<li>
+					<li>	
 						<a href="#" class="a_title">找网站</a>
 						<div class="a_content">
 								<a href="#">热门</a>
@@ -76,10 +71,9 @@
 
 
 
-                </div>
+				
 			</div>
-			<div class="nav_common floor" id="c_2"  data-slide="2">
-                <div class="nav_common_con">
+			<div class="nav_common floor section" id="c_2"   data-slide="2">
 				<div class="common_title"><a href="#" class="a_title">咨询</a></div>
 				<ul>
 					<li>
@@ -155,9 +149,7 @@
 					</div></li>
 				</ul>
 			</div>
-                </div>
-			<div class="nav_common floor" id="c_3"   data-slide="3">
-                <div class="nav_common_con">
+			<div class="nav_common floor section" id="c_3"   data-slide="3">
 				<div class="common_title"><a href="#" class="a_title">社区</a></div>
 				<ul>
 					<li>
@@ -232,10 +224,8 @@
 							<a href="#">科室</a>
 					</div></li>
 				</ul>
-                </div>
 			</div>
-			<div class="nav_common floor" id="c_4"  data-slide="4">
-                <div class="nav_common_con">
+			<div class="nav_common floor section" id="c_4"   data-slide="4">
 				<div class="common_title"><a href="#" class="a_title">疾病</a></div>
 				<ul>
 					<li>
@@ -310,10 +300,8 @@
 							<a href="#">科室</a>
 					</div></li>
 				</ul>
-                    </div>
 			</div>
-			<div class="nav_common floor"  data-slide="5">
-                <div class="nav_common_con">
+			<div class="nav_common floor section" id="c_5"   data-slide="5">
 				<div class="common_title"><a href="#" class="a_title">资讯</a></div>
 				<ul>
 					<li>
@@ -389,10 +377,7 @@
 					</div></li>
 				</ul>
 			</div>
-                </div>
-            <div class="nav_common_con">
-			<div class="nav_common floor"  data-slide="6">
-                <div class="nav_common_con">
+			<div class="nav_common floor section" id="c_6"   data-slide="6">
 				<div class="common_title"><a href="#" class="a_title">保险</a></div>
 				<ul>
 					<li>
@@ -467,18 +452,17 @@
 							<a href="#">科室</a>
 					</div></li>
 				</ul>
-                    </div>
-                </div>
+			</div>
 			<!-- 左边浮动块 导航栏 -->
 				<div class="skipfloor" id="skipfloor">
 					<div>
-						<ul class="floor_nav_fix">
-							<li data-slide="1" onClick="gotofloor(this);"><a href="#c_1" class="curr">挂号</a></li>
-							<li data-slide="2" onClick="gotofloor(this);"><a href="#c_2" class="">咨询</a></li>
-							<li data-slide="3" onClick="gotofloor(this);"><a href="#c_3" class="">社区</a></li>
-							<li data-slide="4" onClick="gotofloor(this);"><a href="#c_4" class="">疾病疾病疾</a></li>
-							<li data-slide="5" onClick="gotofloor(this);"><a class="">咨讯</a></li>
-							<li data-slide="6" onClick="gotofloor(this);"><a class="">保险</a></li>
+						<ul class="floor_nav_fix" id="nav">
+							<li data-slide="1" class="curr"><a href="#c_1">挂号</a></li>
+							<li data-slide="2"><a href="#c_2" class="">咨询</a></li>
+							<li data-slide="3"><a href="#c_3" class="">社区</a></li>
+							<li data-slide="4"><a href="#c_4" class="">疾病疾病疾</a></li>
+							<li data-slide="5"><a href="#c_5" class="">咨讯</a></li>
+							<li data-slide="6"><a href="#c_6" class="">保险</a></li>
 						 </ul>
 					</div>
 				</div>
@@ -492,6 +476,12 @@
 
 
 	<!-- js文件，don't move -->
-	<script type="text/javascript" src="js/site_map.js"></script>
+    <script src="js/jquery.nav.js"></script>
+	<!--<script type="text/javascript" src="js/site_map.js"></script> -->
+    <script>
+        $(function(){
+            $('#nav').onePageNav();
+        });
+    </script>
 </body>
 </html>
