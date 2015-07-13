@@ -1,5 +1,4 @@
 .main{width:960px;margin:0 auto;padding-bottom:30px;}
-
 /*合作banner图片*/
 .links_banner{width:960px;height:222px;padding-top:35px}
 
@@ -9,7 +8,7 @@
 .nav_site_map{position:relative;}
 
 /*左边  浮动导航栏*/
-.skipfloor{position:absolute;margin-left:-96px;top:39px; background-color:#fff;}
+.skipfloor{position:fixed;*position:absolute;/*_top:expression(eval(document.documentElement.scrollTop)+ 39)*/;margin-left:-96px;background-color:#fff;}
 .nav_fix{top:37px;z-index:999;*left:50%;*margin-left:-577px;left: 50%;margin-left:-576px;position: fixed !important;}
 .floor_nav_fix{width:78px;border:1px solid #f0f0f0;}
 .floor_nav_fix li{position:relative;*margin-bottom:-3px;	/*width: 56px;*/height:24px;line-height:24px;border-bottom:1px dotted #eee;text-align:center;}

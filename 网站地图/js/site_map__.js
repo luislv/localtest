@@ -1,4 +1,3 @@
-
 $(function(){
 		$("div.nav_common>ul>li:first-child").css("border-top","none");
 		$("div.a_content>a:last-child").css("border-right","none");
@@ -32,6 +31,7 @@ $(function(){
 //})
 
 
+
 jQuery(document).ready(function($) {
 	try{
 	var f1 = $('.floor[data-slide="1"]').offset().top;
@@ -41,38 +41,52 @@ jQuery(document).ready(function($) {
 		j = i + 1;
 		fss[i] = $('.floor[data-slide="' + j + '"]').offset().top - 39;
 	}
-
-    function docScroll (){
-        var currentTOP = $(window).scrollTop();
-        var skipfloorTop = $(window).scrollTop() + 20 - f1;
+	$(window).scroll(function(){
+		var currentTOP = $(window).scrollTop();
+        var skipfloorTop = $(window).scrollTop() + 39 - f1;
         var isIE=!!window.ActiveXObject;
         var isIE6=isIE&&!window.XMLHttpRequest;
-        var f_pos = $("#footer").offset().top;
-        var t_pos = f_pos - $('#skipfloor').height() - 39;
-
-        if(currentTOP > f1){    //垂直滚动条钓offset 大于90时。
-            if(currentTOP > t_pos){
-                $('#skipfloor').css("position","absolute")
-                $('#skipfloor').css("top", t_pos + 34)
-            }else{
+		if(currentTOP>f1-30){
                 if (isIE6){
-                    $('#skipfloor').css("top", skipfloorTop + f1 + 19)
+                    $('#skipfloor').css("top", skipfloorTop)
                 }else{
-                    $('#skipfloor').css("position","fixed")
-                    $('#skipfloor').css("top", "38px")
+                    $("#skipfloor").addClass('nav_fix');
+
                 }
-
-            }
         }else{
-            $('#skipfloor').css("position","absolute")
-            $('#skipfloor').css("top",f1 + 39)
-        }
-    }
-        docScroll ()
-	$(window).scroll(function(){
-        docScroll ()
-	});
+            if (isIE6){
+                $('#skipfloor').css("top", "")
+            }else{
+                $("#skipfloor").removeClass('nav_fix');
+            }
 
+
+		}
+		if (currentTOP <= f1) {
+			$('.floor_nav_fix li').find('a').removeClass('curr');
+			$('.floor_nav_fix li[data-slide="1"]').find('a').addClass('curr');
+			return;
+		}else{
+			changefl(getFloor(currentTOP));
+		}
+	});
+	function getFloor(fh){
+		if(fs==0||fh<=f1){
+			return 1;
+		}
+		if(fh>=fss[fs-1]){
+			return fs;
+		}
+		for (k=0; k<fs;k++) {
+			if(fh>fss[k]&&fh<fss[k+1]){
+				return k+1;
+			}
+		}
+	}	
+	function changefl(fno){
+		$('.floor_nav_fix li').find('a').removeClass('curr');
+		$('.floor_nav_fix li[data-slide="'+fno+'"]').find('a').addClass('curr');
+	}
 }catch(e){
 	console.log(e);
 }
@@ -86,10 +100,10 @@ function gotop() {
 }
 function gotofloor(thiz) {
 	dataslide = $(thiz).attr('data-slide');
-	var pos = $('.floor[data-slide="' + dataslide + '"]').offset().top;
-	$("html,body").animate({
-		scrollTop : pos+1
-	},200);
+	var pos = $('.floor[data-slide="' + dataslide + '"]').offset().top - 39;
+//	$("html,body").animate({
+//		scrollTop : pos+1
+//	});
 	$(".floor_nav_fix li").find('a').removeClass('curr');
 	$(thiz).find('a').addClass('curr');
 }
