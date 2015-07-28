@@ -3,7 +3,7 @@
 .links_banner{width:960px;height:222px;padding-top:35px}
 
 /*实体框*/
-.nav_common{margin-top:-19px; position:relative;z-index:1;padding-top:39px; display:inline-block;width:100%;}
+.nav_common{margin-top:-19px;padding-top:39px; display:inline-block;width:100%;}
 .nav_common .nav_common_con {border:1px solid #eee;border-top:none;}
 .nav_site_map{position:relative;}
 
@@ -19,9 +19,9 @@
 .floor_nav_fix li a.curr:hover{color:#fff;}
 
 /*地图块*/
-.common_title{padding-left:15px;border-bottom:1px solid #eee;height:39px; overflow:hidden;border-top:2px solid #14aeed;}
+.common_title{ position:relative;z-index:3;padding-left:15px;border-bottom:1px solid #eee;height:39px; overflow:hidden;border-top:2px solid #14aeed;}
 .common_title a{display:inline-block;font-size:18px;color:#000;height:39px;line-height:39px;cursor:pointer; float:left;color:#0090db;}
-.common_title .tt_btn{width:15px; height:15px; display:inline-block;background:url(./site_map/arrow_icon_h.jpg) no-repeat 0 0; cursor:pointer; float:left; margin:12px 0 0 10px;}
+.common_title .base_btn{width:15px; height:15px; display:inline-block;background:url(./site_map/arrow_icon_h.jpg) no-repeat 0 0; cursor:pointer; float:left; margin:12px 0 0 10px;}
 .common_title .close{ display:inline-block;background:url(./site_map/arrow_icon.jpg) no-repeat 6% 50%;}
 .nav_common ul { display:block;_float:left; _position:relative;_border:1px solid #eee;_border-top:none;_left:-1px;}
 .nav_common ul li{position:relative;margin:0 15px;_left:-15px;border-top:1px dotted #eee;line-height:36px;padding:6px 0 8px 100px;_padding:6px 0 8px 98px;overflow: hidden;display:block;_float:left;}

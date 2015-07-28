@@ -14,7 +14,7 @@ var statIdName = "vlstatId";
 function setCookie(c_name, value, expiredays) {
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + expiredays);
-    document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()) + ";path=/;domain=localtest.com";
+    document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()) + ";path=/;domain=91160.com";
 }
 /**
  * 获取cookieId
@@ -54,7 +54,7 @@ function genStatId() {
  */
 function setStatId() {
     var cookieId = genStatId();
-    setCookie(statIdName, cookieId, 1);
+    setCookie(statIdName, cookieId, 1);//设置cookie有效时间一天
 }
 /**
  * 获取StatId
@@ -66,18 +66,6 @@ function getStatId() {
     } else {
         setStatId();
         return getStatId();
-    }
-}
-/**
- *
- * 判断是否新访问用户
- */
-function newUser() {
-    var userId = document.cookie.indexOf(statIdName);
-    if (userId == -1) {
-        return "1"
-    } else {
-        return "0"
     }
 }
 /**
@@ -175,6 +163,21 @@ function createXMLHttpRequest() {
     }
 }
 
+
+function ccc() {
+    var bbb = getCookie(statIdName);
+    if (bbb != null && bbb.length > 0) {
+        return "y";
+    } else {
+        return "n"
+    }
+}
+$(function(){
+    var aaa = ccc();
+    alert(aaa);
+});
+
+
 $(function () {
     //  var pre = encodeURIComponent(document.referrer);
     //  alert(pre);
@@ -184,7 +187,6 @@ $(function () {
         'currentUrl': encodeURIComponent(document.URL),         //当前url
         'previousUrl': encodeURIComponent(document.referrer),   //上页url
         'cookieId': getStatId(),                                //cookie
-        'newUser': newUser(),                           //判断是否新用户 0代表新用户 1代表老用户
         'currentTime': currentTime(),                           //访问页面时间
         'ip': returnCitySN["cip"],       //访问IP
         'area': returnCitySN["cname"]    //访问IP地区

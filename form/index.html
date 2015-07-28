@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript" src="../global_files/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+
+        function ccc(){
+            alert(111)
+        }
+</script>
+<form id="form1" action="{url controller=order action=submit site=$is_site_unit}" method="post" onsubmit="ccc();">
+    <div class="information_box">
+        {if $type==0}
+        <dl class="sel_list">
+            <dt>
+                患者类型<i>0</i>
+                <input type='hidden' name='patientTypeID' value='0' />
+            </dt>
+        </dl>
+        {elseif $type==1}
+        <dl class="sel_list">
+            <dt>
+                患者类型<i>{$patientInfo.patienTypeName}</i>
+                <input type='hidden' name='patientTypeID' value='{$patientInfo.patientTypeID}' />
+            </dt>
+        </dl>
+        {else}
+        <dl class="sel_list">
+            <dt>
+                患者类型<em>{$defaultPatientInfo.patienTypeName}</em>
+                <input type='hidden' name='patientTypeID' value='{$defaultPatientInfo.patientTypeID}' />
+            </dt>
+            <dd>
+                <div class="list_t"><i class="btn_close"></i>患者类型</div>
+                <ul>
+                    {foreach from=$patientInfo item=v}
+                    <li><a href="#" type="patientTypeID" value="{$v.patientTypeID}" gy_flag="{$v.userPublicPatientFlag}" mt_flag="{$v.userOPSPFlag}" patient_id={$v.patient_id}>{$v.patienTypeName}</a></li>
+                    {/foreach}
+                </ul>
+            </dd>
+        </dl>
+        {/if}
+
+        <dl class="sel_list">
+            <dt>
+                支付类型<em>自费</em>
+                <input type='hidden' name='pay_method' value='31' />
+            </dt>
+            <dd>
+                <div class="list_t"><i class="btn_close"></i>支付类型</div>
+                <ul>
+                    <li><a href="#" type="pay_method" value="32">医保统筹</a></li>
+                    <li><a href="#" type="pay_method" value="33">医保门慢</a></li>
+                    <li><a href="#" type="pay_method" value="34">医保门特</a></li>
+                    <li><a href="#" type="pay_method" value="35">公医</a></li>
+                    <li><a href="#" type="pay_method" value="31">自费</a></li>
+                </ul>
+            </dd>
+        </dl>
+
+        <dl class="sel_list" id='selfpay_1' {if !$flag}style='display:none;'{/if}>
+        <dt>
+            自费标志<i>1-指定挂自费号</i>
+            <input type='hidden' id='register_1' {if $flag}name='registerFlag'{/if} value='1' />
+        </dt>
+        </dl>
+        <dl class="sel_list" id='selfpay_0' {if $flag}style='display:none;'{/if}>
+        <dt>
+            自费标志<em>0-不指定挂自费号</em>
+            <input type='hidden' id='register_0' {if !$flag}name='registerFlag'{/if} value='0' />
+        </dt>
+        <dd>
+            <div class="list_t"><i class="btn_close"></i>自费标志</div>
+            <ul>
+                <li><a href="#" type="registerFlag" value="0">0-不指定挂自费号</a></li>
+                <li><a href="#"  type="registerFlag" value="1">1-指定挂自费号</a></li>
+            </ul>
+        </dd>
+        </dl>
+        <div class="inp_list" id="zyh" {if $mt_flag==0}style="display:none;"{/if}><span class="info">医保门特住院号</span><input name="opspseqNo" placeholder="请输入住院号" type="text" /></div>
+        <div class="inp_list" id="ylzh" {if $gy_flag==0}style="display:none;"{/if}><span class="info">医疗证号</span><input name="userylz" placeholder="请输入医疗证号" type="text" /></div>
+        <div class="sub_btn"><input type="submit" value="提交"  /></div>
+    </div>
+
+    <!-- add by luochao 2015-7-10 -->
+    <input type='hidden' name='member_id' value='{$member_id}' />
+    <input type='hidden' name='unit_id' value='{$unit_id}' />
+    <input type='hidden' name='sch_id' value='{$sch_id}' />
+    <input type='hidden' name='detl_id' value='{$detl_id}' />
+    <input type='hidden' name='captcha' value='{$captcha}' />
+
+    <input type='hidden' id='gy_flag' value='{$gy_flag}' />
+    <input type='hidden' id='mt_flag' value='{$mt_flag}' />
+    <input type='hidden' id='ylzh_show' value='{$gy_flag}' />
+    <input type='hidden' id='zyh_show' value='{$mt_flag}' />
+    <input type="hidden" id='patient_id' name="patient_id" value="{$patient_id}" />
+
+</form>
+</body>
+</html>
