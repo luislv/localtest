@@ -80,6 +80,7 @@ function newUser() {
         return "0"
     }
 }
+var newUserCon = newUser();
 /**
  * 获取UA
  */
@@ -184,7 +185,7 @@ $(function () {
         'currentUrl': encodeURIComponent(document.URL),         //当前url
         'previousUrl': encodeURIComponent(document.referrer),   //上页url
         'cookieId': getStatId(),                                //cookie
-        'newUser': newUser(),                           //判断是否新用户 0代表新用户 1代表老用户
+        'newUser': newUserCon,                           //判断是否新用户 0代表新用户 1代表老用户
         'currentTime': currentTime(),                           //访问页面时间
         'ip': returnCitySN["cip"],       //访问IP
         'area': returnCitySN["cname"]    //访问IP地区
