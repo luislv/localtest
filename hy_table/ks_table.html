@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="css/demo.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+</head>
+<body>
+<div class="ks_tit">科室服务信息</div>
+<div class="sel_box">
+    <label>科室选择：</label>
+    <!--科室选择框-->
+    <select id="ks_sel" style="width:150px"></select>
+
+    <div id="ks_box">
+        <ul id="ks_list" class="easyui-tree"
+            url="tree_data.json"
+            checkbox="true" animate="true" iconCls='icon-add'>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#ks_sel').combo({
+                required: true,
+                editable: false
+            });
+            $('#ks_box').appendTo($('#ks_sel').combo('panel'));
+        });
+        //格式化日历时间
+        function myformatter(date){
+            var y = date.getFullYear();
+            var m = date.getMonth()+1;
+            var d = date.getDate();
+            return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
+        }
+        function myparser(s){
+            if (!s) return new Date();
+            var ss = (s.split('-'));
+            var y = parseInt(ss[0],10);
+            var m = parseInt(ss[1],10);
+            var d = parseInt(ss[2],10);
+            if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+                return new Date(y,m-1,d);
+            } else {
+                return new Date();
+            }
+        }
+    </script>
+    <!--日历-->
+    <label>日期选择：</label>
+    <input class="easyui-datebox" data-options="formatter:myformatter,parser:myparser"/>
+</div>
+<div class="table_box">
+    <div class="date_box">
+        <div class="prev_day"><a href="#">前一天</a></div>
+        <div class="to_day">2015-08-19 服务信息</div>
+        <div class="next_day"><a href="#">后一天</a></div>
+    </div>
+    <!--查询结果-->
+    <table class="easyui-treegrid"
+           data-options="
+				url: 'treegrid_data3.json',
+				method: 'get',
+				// rownumbers: true,
+				// showFooter: true,
+				idField: 'id',
+				treeField: 'region'
+			">
+        <thead frozen="true">
+        <tr>
+            <th field="region1" align="center" width="15%" height="50">科室</th>
+            <th field="region" align="left" width="15%" height="50"><div style="text-align: center">班别</div></th>
+        </tr>
+        </thead>
+        <thead>
+        <tr>
+            <th field="f1" width="15%" height="50" align="center">资源数</th>
+            <th field="f2" width="15%" align="center">已挂号</th>
+            <th field="f3" width="15%" align="center">报道数</th>
+            <th field="f4" width="15%" align="center">订单数</th>
+            <th field="f5" width="10%" align="center">操作</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<style type="text/css">
+     body {padding: 0; font-family: 微软雅黑, "Microsoft YaHei", 宋体; }
+    .ks_tit {  background: #088ec9;  padding: 10px;  font-size: 16px;  font-weight: bold;  color: #fff;  }
+    .sel_box {padding: 10px;}
+    .sel_box label {font-weight: bold;}
+     .table_box {padding:0 10px;}
+     .table_box .date_box {border:1px solid #eee;height:40px;line-height:40px; font-size: 14px; text-align: center; border-top:3px solid #088ec9;font-weight:bold;}
+     .table_box .date_box div {display: inline-block;}
+     .table_box .date_box .to_day {padding:0 100px;}
+     .cz,.ck{border:1px solid red; padding:0 10px; display:inline-block;}
+/*easy ui 风格修改*/
+    .sel_box .textbox-invalid {border:1px solid #eee; background-color: #fafafa;padding:2px 3px;}
+    .sel_box .validatebox-invalid { background-color: #fff;}
+    .sel_box .combo {padding:2px 3px;margin-right:10px;border:1px solid #eee;}
+    .sel_box .combo-arrow {padding:2px 1px}
+     .sel_box .datebox .combo-arrow { background-image: url("icon/tili.gif"); background-repeat:no-repeat; background-position:4px 5px;}
+     .panel-header, .panel-body {border:1px solid #eee;}
+    #ks_box .tree{padding-top:5px;}
+    #ks_box .tree li{}
+    #ks_box .tree-folder,#ks_box .tree-file{display:none;}
+    #ks_box .tree-node {height:24px;padding-left:7px;}
+    #ks_box span {height:22px;line-height:22px;}
+    #ks_box .tree-expanded,#ks_box .tree-collapsed {height:18px;widht:18px;margin:2px 0 2px 2px;}
+    #ks_box .tree-checkbox0,#ks_box .tree-checkbox1,#ks_box .tree-checkbox2 {height:16px;width:16px;margin:3px 3px 0 3px; background-image: url("icon/sel_bg.png"); background-repeat: no-repeat;}
+    #ks_box .tree-checkbox0{ background-position: 0 0;}
+    #ks_box .tree-checkbox1{background-position: 0 -16px;}
+    #ks_box .tree-checkbox2{background-position: 0 -32px;}
+
+
+
+</style>
+<!--<style type="text/css">-->
+    <!--.cc {width:40px;height:40px; border:1px solid red;}-->
+    <!--.cc li {width:20px; float: left; text-align: center; display: table; line-height: 20px;}-->
+    <!--.cc li span { display: table-cell;vertical-align:middle;}-->
+    <!--.cc .left {height:40px;}-->
+<!--</style>-->
+<!--<ul class="cc"><li class="left"><span>居中</span></li><li class="rt">1</li><li class="rb">2</li></ul>-->
+<!--<ul class="cc"><li class="left"><span>居</span></li><li class="rt">1</li><li class="rb">2</li></ul>-->
+</body>
+</html>

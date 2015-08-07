@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "name": "中心门诊",
+    "num_zy": "",
+    "num_yg": "19",
+    "num_bd": "11",
+    "num_dd": "11",
+    "handle":"<a class='cz' href='#'>预约设置</a><a class='ck' href='#'>查看医生</a>",
+    "state": "closed",
+    "children": [
+      {
+        "id": 2,
+        "name": "早班",
+        "num_zy": "120 MB",
+        "num_yg": "20",
+        "num_bd": "11",
+        "num_dd": "11",
+        "state": "closed",
+        "children": [
+          {
+            "id": 21,
+            "name": "9:00-10:00",
+            "num_zy": "",
+            "num_yg": "13",
+            "num_bd": "11",
+            "num_dd": "22"
+
+          },
+          {
+            "id": 22,
+            "name": "10:00-11:00",
+            "num_zy": "",
+            "num_yg": "13",
+            "num_bd": "11",
+            "num_dd": "22"
+          },
+          {
+            "id": 23,
+            "name": "11:00-12:00",
+            "num_zy": "",
+            "num_yg": "13",
+            "num_bd": "11",
+            "num_dd": "22"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "中班",
+        "num_zy": "",
+        "num_yg": "20",
+        "num_bd": "11",
+        "num_dd": "22",
+        "state": "closed",
+        "children": [
+          {
+            "id": 31,
+            "name": "12:00-13:00",
+            "num_zy": "56 KB",
+            "num_yg": "19",
+            "num_bd": "11",
+            "num_dd": "22"
+          },
+          {
+            "id": 32,
+            "name": "13:00-14:00",
+            "num_zy": "1 KB",
+            "num_yg": "20",
+            "num_bd": "11",
+            "num_dd": "22"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "晚班",
+        "num_zy": "",
+        "num_yg": "20",
+        "num_bd": "11",
+        "num_dd": "22",
+        "state": "closed",
+        "children": [
+          {
+            "id": 41,
+            "name": "14:00-15:00",
+            "num_zy": "56 KB",
+            "num_yg": "19",
+            "num_bd": "11",
+            "num_dd": "22"
+          },
+          {
+            "id": 42,
+            "name": "15:00-16:00",
+            "num_zy": "1 KB",
+            "num_yg": "20",
+            "num_bd": "11",
+            "num_dd": "22"
+          },
+          {
+            "id": 43,
+            "name": "16:00-17:00",
+            "num_zy": "7 KB",
+            "num_yg": "17",
+            "num_bd": "11",
+            "num_dd": "22"
+          }
+        ]
+      }
+    ]
+  }
+]
