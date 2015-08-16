@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7]>
+<html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>医生助手_医生咨询</title>
+    <link type="text/css" rel="stylesheet" href="http://nykj.91160.com/style/base.min.css">
+    <link type="text/css" rel="stylesheet" href="http://nykj.91160.com/style/admin.min.css">
+    <!--<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>-->
+    <!--<script src="//hm.baidu.com/hm.js?c4e8e5b919a5c12647962ea08462e63b"></script>-->
+    <!--<script src="http://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.9.1.min.js"></script>-->
+    <script>window.jQuery || document.write('<script src="http://nykj.91160.com/script/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+    <!--<script src="http://nykj.91160.com/script/jquery-migrate-1.1.1.min.js"></script>
+    <link  type="text/css"  rel="stylesheet" href="http://nykj.91160.com/script/artDialog/skins/default.css">-->
+    <!--  医生助手css、js文件 -->
+    <link type="text/css" rel="stylesheet" href="css/easydoc.css"/>
+    <script type="text/javascript" src="js/easydoc.js"></script>
+</head>
+<body>
+<div class="admin">
+    <div class="help_tit">群发消息：</div>
+    <div class="news">
+        <div class="news_t">
+            <span>新建</span>
+            <span  class="active">已发送</span>
+            <span>草稿箱</span>
+        </div>
+    </div>
+    <table id="send_log" class="send_log table table_hover table_fluid">
+        <caption></caption>
+        <thead>
+        <tr>
+            <th style="width: 10%;">消息种类</th>
+            <th>消息内容</th>
+            <th style="width: 15%;">群发对象</th>
+            <th style="width: 9%;">发送时间</th>
+            <th style="width: 5%;">操作人</th>
+        </tr>
+        </thead>
+        <tbody class="typo_center">
+        <tr>
+            <td>文字消息</td>
+            <td>
+                <div class="disc">尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生</div>
+            </td>
+            <td>深圳市北京大学深圳医院消化内科<br/>已认证<br/>咨询、VIP、加号、推荐</td>
+            <td>18665824241</td>
+            <td>莫莫</td>
+        </tr>
+        <tr>
+            <td>图片消息</td>
+            <td><img class="small_pic" width="150" height="100" src="images/case.jpg"/></td>
+            <td>所有用户</td>
+            <td>18665824241</td>
+            <td>莫莫</td>
+        </tr>
+        <tr>
+            <td>图文消息</td>
+            <td>【标题】<a href="http://t.cn/RZ6nbES">http://t.cn/RZ6nbES</a></td>
+            <td>所有用户</td>
+            <td>18665824241</td>
+            <td>莫莫</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td class="typo_right" colspan="12">
+                <div>共有<font color="#FF0000">299</font>条记录&nbsp;<a
+                        href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=1">首页</a> | <a
+                        href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=1">上一页</a> | <a
+                        href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=3">下一页</a> | <a
+                        href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=30">末页</a> &nbsp;&nbsp;<a
+                        href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=1">1</a> <font
+                        color="#FF0000">2</font> <a href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=3">3</a>
+                    <a href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=4">4</a> <a
+                            href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=5">5</a> <a
+                            href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=6">6</a> <a
+                            href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=7">7</a></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+    <div class="submit_box"><input type="button" value="保 存"/><input class="fs" type="button" value="发 送"/></div>
+</div>
+
+<!-- 弹出层部分 -->
+<!--<div class="float_bg"></div> -->  <!--灰色背景-->
+<!--图片弹出层-->
+<!--<div class="ans_box fl_pic" style="display:none;">
+    <div class="close"></div>
+    <img class="small_pic" src="images/case.jpg"/>
+</div>  -->
+<!--文字弹出层-->
+<!--<div class="ans_box fl_txt" style="display:none;left:50%;margin-left:-300px;margin-top:-150px;">
+    <div class="close"></div>
+    <h3>文字消息</h3>
+
+    <p>
+        《爸爸去哪儿》上周五晚节目播出后一段几秒钟的预告片中，胡军以戴假发化浓妆的女装造型短暂亮相，让观众直呼“闪瞎眼”，纷纷在网上评论“不敢直视”。据悉，胡军这一身“惊悚”造型将会出现在本周五晚《爸爸去哪儿》的“大象选美”环节，五位萌娃本期将变身小化妆师脑洞大开为老爸装扮，假发、长裙、大浓妆，爸爸变身“雷人美少妇”，全场爆笑不断，五位老爸谁将拔得头筹获得大象的“青睐”令人期待。
+
+        胡军大侠变身“如花” 刘烨调侃“师哥美”
+
+        本周节目中，大侠胡军首次男扮女装秒变“如花”，笑果惊人，预告片中尽管只是惊鸿一瞥已让人印象深刻。在儿子胡皓康的打造下，胡军身穿黑裙，头戴凌乱的假发套，脸上过厚的粉底配上烈焰红唇大红色十分“惊悚”，咧着嘴角大喊“胡皓康”的模样更是让人忍俊不禁，网友逗趣调侃称：“烈焰红唇大白脸，粗壮身材惹人醉”。采访中胡军也大方透露：“我看康儿感兴趣，就豁出去了呗”，但看到其他老爸在一旁笑惨，胡军也颇为不淡定地感叹：“一世英名，毁于一化啊！”
+
+        相比胡军，其他老爸的造型也毫不逊色，傲娇小公举刘烨终于有机会变身“真公举”，全程嗨翻天任由诺一摆弄，还兴奋得自己穿肚兜化妆打扮，一亮相便“惊艳四座”。从陕西站一身民工装的“土帅”，到如今身着肚兜脸化大浓妆的“土美”，刘烨对自己的造型似乎颇为满意，各种摆pose抛媚眼，不停询问大家的意见以求得到肯定，甚至十分认真地问儿子：“爸爸好看还是妈妈好看？”惹得诺一一脸尴尬不知如何作答，调侃完萌娃，刘烨还不忘故意打趣胡军说“师哥你太美了”，引得现场又是一阵爆笑。
+
+        林永健女妆扮相成“颜皇” 拳王变“美少妇”</p>
+</div>  -->
+</body>
+</html>
