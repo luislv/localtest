@@ -92,3 +92,4 @@ body{font-family: 微软雅黑, "Microsoft YaHei", 宋体}
 .upload_box .showimg img{height: 250px;}
 .send_log{line-height: 28px;}
 .send_log .disc {cursor:pointer;}
+.bg_dis { background-color: #eee; color:#999;}

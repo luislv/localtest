@@ -10,7 +10,7 @@ $(function () {
     //图片弹出框
     $(".openImg").on("click", function () {
         var imgSrc = $(this).find("img").attr("src");
-        $("#float_box3 img").attr("src",imgSrc);
+        $("#float_box3 img").attr("src", imgSrc);
         var pTop = $(window).height() - $("#float_box3").height();
         var mLeft = $("#float_box3").width() / 2;
         $("#float_box3").css({"top": pTop / 2, "margin-left": -mLeft, "display": "block"});
@@ -53,13 +53,13 @@ $(function () {
     $("#ch_all").click(
         function () {
             if (this.checked) {
+                $("#form1").addClass("bg_dis");
                 $("#form1 select").attr("disabled", true);
                 $("#form1 input").attr("disabled", true);
-                //   $("#form1 input[name='checkname']").attr('checked', true)
             } else {
+                $("#form1").removeClass("bg_dis");
                 $("#form1 select").attr("disabled", false);
                 $("#form1 input").attr("disabled", false);
-                //  $("#form1 input[name='checkname']").attr('checked', false)
             }
         }
     );
@@ -86,14 +86,14 @@ function getTime() {
     $("#nowTime").html(date + " " + hours + ":" + minutes); //将值赋给div
 }
 //弹出层
-function showTxt(){
+function showTxt() {
     var pTop = $(window).height() - $("#float_box2").height();
     var mLeft = $("#float_box2").width() / 2;
     $("#float_box2").css({"top": pTop / 2, "margin-left": -mLeft, "display": "block"});
     $("body").append("<div class='float_bg'></div>");
     $("html").css("overflow", "hidden");
 }
-function showSend (){
+function showSend() {
     var pTop = $(window).height() - $("#float_box1").height();
     var mLeft = $("#float_box1").width() / 2;
     $("#float_box1").css({"top": pTop / 2, "margin-left": -mLeft, "display": "block"});

@@ -43,10 +43,6 @@ $(function () {
             }
         });
     });
-    //
-    //$(".files").click(function(){
-    //    $(this).remove();
-    //})
     $(".delimg").on('click',function(){
         var upBox = $(this).parents(".tab_c");
         var pic = $(this).attr("rel");
