@@ -2,9 +2,54 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>jquery限制输入字数,并提示剩余字数</title>
+    <script type="text/javascript" src="global_files/jquery-2.1.1.min.js"></script>
+    <!--<script type="text/javascript">-->
+        <!--var ie = jQuery.support.htmlSerialize;-->
+        <!--if(ie){-->
+            <!--$("#TextArea1")[0].oninput = words_deal;-->
+        <!--}else{-->
+            <!--$("#TextArea1")[0].onpropertychange  = words_deal;-->
+        <!--}-->
+        <!--function words_deal()-->
+        <!--{-->
+
+            <!--//汉字的个数-->
+            <!--str = ($("#TextArea1").val().replace(/\w/g,"")).length;-->
+            <!--//非汉字的个数-->
+            <!--abcnum = $("#TextArea1").val().length-str;-->
+
+            <!--total = str*2+abcnum;-->
+            <!--var inTotal = Math.ceil(5 - total/2)-->
+
+            <!--if(total >5)-->
+            <!--{-->
+                <!--var num=$("#TextArea1").val().substr(0,5);-->
+                <!--$("#TextArea1").val(num);-->
+                <!--alert("超过字数限制，多出的字将被截断！" );-->
+            <!--}-->
+            <!--else-->
+            <!--{-->
+                <!--$("#textCount").text(inTotal);-->
+            <!--}-->
+        <!--}-->
+    <!--</script>-->
+    <script type="text/javascript">
+
+            function albumName() {
+                var text = $("#album_name").val();
+                var counter = text.length;
+                $("#numtj var").text(counter);
+                $(document).keyup(function() {
+                    var text = $("#album_name").val();
+                    var counter = text.length;
+                    $("#name_word").text(counter);
+                });
+            }
+    </script>
 </head>
 <body>
-
+<input type="text" maxlength="30" class="int_txt" name="album_name" id="album_name" onclick="albumName()">
+<span class="count_txt"><span id="name_word">0</span>/30</span>
 </body>
 </html>
