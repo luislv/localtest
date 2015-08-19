@@ -34,33 +34,41 @@
             </div>
         </div>
         <div class="tab_box_c">
-            <div class="send_to"><strong>群发对象</strong><input type="checkbox" id="ch_all"/><label>所有用户</label></div>
-            <form id="form1" class="panel panel_ctrl" method="post">
-                <fieldset>
-                    <label>选择：</label>
-                    <select id="type" name="type">
-                        <option value="">-请选择城市-</option>
-                    </select>
-                    <select name="status">
-                        <option value="">-请选择医院-</option>
-                    </select>
-                    <select name="status">
-                        <option value="">-请选择科室-</option>
-                    </select>
-                    <select name="status">
-                        <option value="">-请选择医院-</option>
-                    </select>
-                    <select name="status">
-                        <option value="">-未认证-</option>
-                    </select>
-                    <span class="xz"><input type="checkbox"/><label>咨询</label></span>
-                    <span class="xz"><input type="checkbox"/><label>VIP</label></span>
-                    <span class="xz"><input type="checkbox"/><label>加号</label></span>
-                    <span class="xz"><input type="checkbox"/><label>推荐</label></span>
+            <div class="sel_box">
+                <div class="send_to"><strong>群发对象</strong><input type="checkbox" id="ch_all"/><label>所有用户</label></div>
+                <form id="form1" class="panel panel_ctrl" method="post">
+                    <fieldset>
+                        <label>选择：</label>
+                        <select id="type" name="type">
+                            <option value="">-请选择城市-</option>
+                            <option value="1">-武汉-</option>
+                        </select>
+                        <select name="status">
+                            <option value="">-请选择医院-</option>
+                            <option value="1">-深圳福田妇幼-</option>
+                        </select>
+                        <select name="status">
+                            <option value="">-请选择科室-</option>
+                            <option value="1">-妇科-</option>
+                        </select>
+                        <select name="status">
+                            <option value="">-请选择医生-</option>
+                            <option value="1">-吕-</option>
+                        </select>
+                        <select name="status">
+                            <option value="">-未认证-</option>
+                        </select>
+                        <span class="xz"><input type="checkbox"/><label>咨询</label></span>
+                        <span class="xz"><input type="checkbox"/><label>VIP</label></span>
+                        <span class="xz"><input type="checkbox"/><label>加号</label></span>
+                        <span class="xz"><input type="checkbox"/><label>推荐</label></span>
 
-                </fieldset>
-                <input type="hidden" name="pay_state" value="">
-            </form>
+                    </fieldset>
+                    <input type="hidden" name="pay_state" value="">
+                </form>
+<div class="ts" id="sel_ts"></div>
+            </div>
+
             <div class="new_box tab">
                 <div class="np_t tab_t">
                     <div class="ts">发送推送提醒<input type="checkbox"/></div>
@@ -77,7 +85,8 @@
 
                         <div class="btn">
                             <span>添加图片</span>
-                            <input class="fileupload" type="file" name="mypic">
+                            <input class="fileupload"  type="file" name="mypic">
+
                         </div>
                         <div class="progress">
                             <span class="bar"></span><span class="percent">0%</span>
@@ -354,7 +363,8 @@
     $(".submit_box input").click(function () {
         if ($("#tw_tit").val() == '') {
             $("#tw_tit").parents(".t_box").next(".ts").text("* 标题不能为空");
-        }if ($("#act_link input").val() == '') {
+        }
+        if ($("#act_link input").val() == '') {
             $("#act_link").next(".ts").text("* 活动链接不能为空");
         }
     });
@@ -365,6 +375,26 @@
         $("#act_link").next(".ts").text("");
     });
 
+
+    $(function () {
+        //判断是否选择发送对象
+        $(".submit_box .fs").on("click",function(){
+            //定义选择对象
+            var formSel = $("#form1 select option:selected");
+            var formInp = $(".sel_box  input[type=checkbox]:checked");
+            //判断下拉框是否有选择
+            if (formSel.val() == "") {
+                if(formInp.size() == 0){
+                    $("#sel_ts").text("* 请至少选择一个发送对象");
+                }
+            } else {
+            }
+        })
+        //选择发送对象时清除提示
+        $(".sel_box").on("click",function(){
+            $("#sel_ts").text("");
+        });
+    })
 </script>
 <script type="text/javascript" src="js/jquery.form.js"></script>
 <script type="text/javascript" src="js/upload.js"></script>

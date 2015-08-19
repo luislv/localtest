@@ -180,23 +180,59 @@
                                                                                                       value="发 送"/>
         </div>
         <div class="refund_c tab_c" style="display: none;">
-            <script>$(function () {
-                $(".uploader input[type=file]").change(function () {
-                    $(this).parents(".uploader").find(".filename").val($(this).val());
+            <script type="text/javascript">
+                $(function () {
+                    $(".uploader input[type=file]").change(function () {
+                        $(this).parents(".uploader").find(".filename").val($(this).val());
+                    });
+                    $(".uploader input[type=file]").each(function () {
+                        if ($(this).val() == "") {
+                            $(this).parents(".uploader").find(".filename").val("上传图片大小: 不超过10M, 格式:png, jpeg, jpg, gif");
+                        }
+                    });
+                   //图片大小 格式验证
+                    $(".uploader input[type=file]").change(function () {
+                        var filepath = $("input[name='myFile']").val();
+                        var extStart = filepath.lastIndexOf(".");
+                        var ext = filepath.substring(extStart, filepath.length).toUpperCase();
+                        if (ext != ".BMP" && ext != ".PNG" && ext != ".GIF" && ext != ".JPG" && ext != ".JPEG") {
+                            alert("图片限于bmp,png,gif,jpeg,jpg格式");
+                            return false;
+                        } else {
+                        }
+                        var file_size = 0;
+                        //判断是否ie
+                        if ($.support.msie) {
+                            var img = new Image();
+                            img.src = filepath;
+                            while (true) {
+                                if (img.fileSize > 0) {
+                                    if (img.fileSize > 10 * 1024 * 1024) {
+                                        alert("图片不大于100MB。");
+                                    } else {
+                                    }
+                                    break;
+                                }
+                            }
+                        } else {
+                            file_size = this.files[0].size;
+                            console.log(file_size / 1024 / 1024 + " MB");
+                            var size = file_size / 1024;
+                            if (size > 10 * 1024) {
+                                alert("图片大小不能超过10M！");
+                            } else {
+                            }
+                        }
+                        return true;
+                    });
                 });
-                $(".uploader input[type=file]").each(function () {
-                    if ($(this).val() == "") {
-                        $(this).parents(".uploader").find(".filename").val("上传图片大小: 不超过10M, 格式:png, jpeg, jpg, gif");
-                    }
-                });
-            });
             </script>
             <div class="uploader blue">
                 <label>选择要发送的图片：</label>
                 <input type="text" class="filename" readonly/>
                 <input type="button" name="file" class="button" value="选择文件"/>
                 <input type="submit" name="submit" class="button send_b" value="发送"/>
-                <input type="file" size="30"/>
+                <input type="file" name="myFile" id="mypicUp" size="30"/>
             </div>
             <style type="text/css">
                 .uploader {

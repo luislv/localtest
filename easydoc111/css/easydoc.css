@@ -44,6 +44,7 @@ body{font-family: 微软雅黑, "Microsoft YaHei", 宋体}
 .news_t .active{background-color: #088ec9; color: #fff;}
 .send_to{padding: 10px;}
 .send_to strong, .send_to input{margin-right: 10px;}
+.sel_box .ts { color:red;}
 .panel .xz{display: inline-block;}
 .panel .xz input{float: left; display: inline; margin: 3px 5px 0 0;}
 .new_box{padding: 5px 20px 10px 20px;}
