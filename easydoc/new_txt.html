@@ -1,0 +1,434 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7]>
+<html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>医生助手_医生咨询</title>
+    <link type="text/css" rel="stylesheet" href="http://nykj.91160.com/style/base.min.css">
+    <link type="text/css" rel="stylesheet" href="http://nykj.91160.com/style/admin.min.css">
+    <!--<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>-->
+    <!--<script src="//hm.baidu.com/hm.js?c4e8e5b919a5c12647962ea08462e63b"></script>-->
+    <!--<script src="http://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.9.1.min.js"></script>-->
+    <script>window.jQuery || document.write('<script src="http://nykj.91160.com/script/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+    <!--<script src="http://nykj.91160.com/script/jquery-migrate-1.1.1.min.js"></script>
+    <link  type="text/css"  rel="stylesheet" href="http://nykj.91160.com/script/artDialog/skins/default.css">-->
+    <!--  医生助手css、js文件 -->
+    <link type="text/css" rel="stylesheet" href="css/easydoc.css"/>
+    <script type="text/javascript" src="js/easydoc.js"></script>
+</head>
+<body>
+<div class="admin">
+    <div class="tab_box">
+        <div class="help_tit">群发消息：</div>
+        <div class="news">
+            <div class="news_t  tab_box_t">
+                <span class="active">新&nbsp;&nbsp;&nbsp;&nbsp;建</span>
+                <span>已发送</span>
+                <span>草稿箱</span>
+            </div>
+        </div>
+        <div class="tab_box_c">
+            <div class="sel_box">
+                <div class="send_to"><strong>群发对象</strong><input type="checkbox" id="ch_all"/><label>所有用户</label></div>
+                <form id="form1" class="panel panel_ctrl" method="post">
+                    <fieldset>
+                        <label>选择：</label>
+                        <select id="type" name="type">
+                            <option value="">-请选择城市-</option>
+                            <option value="1">-武汉-</option>
+                        </select>
+                        <select name="status">
+                            <option value="">-请选择医院-</option>
+                            <option value="1">-深圳福田妇幼-</option>
+                        </select>
+                        <select name="status">
+                            <option value="">-请选择科室-</option>
+                            <option value="1">-妇科-</option>
+                        </select>
+                        <select name="status">
+                            <option value="">-请选择医生-</option>
+                            <option value="1">-吕-</option>
+                        </select>
+                        <select name="status">
+                            <option value="">-未认证-</option>
+                        </select>
+                        <span class="xz"><input type="checkbox"/><label>咨询</label></span>
+                        <span class="xz"><input type="checkbox"/><label>VIP</label></span>
+                        <span class="xz"><input type="checkbox"/><label>加号</label></span>
+                        <span class="xz"><input type="checkbox"/><label>推荐</label></span>
+
+                    </fieldset>
+                    <input type="hidden" name="pay_state" value="">
+                </form>
+<div class="ts" id="sel_ts"></div>
+            </div>
+
+            <div class="new_box tab">
+                <div class="np_t tab_t">
+                    <div class="ts">发送推送提醒<input type="checkbox"/></div>
+                    <span class="active">文字消息</span><span>图片消息</span><span>图文消息</span></div>
+                <!--文字信息-->
+                <div class="np_c tab_c" style="display:block;">
+                    <div class="edit_box" style="height:300px;">文字消息编辑器部分</div>
+                </div>
+                <!--图片信息-->
+                <div class="np_c tab_c" style="display:none;">
+                    <!-- 上传代码 -->
+                    <div class="upload_box">
+                        <p>说明：上传图片大小: 不超过10M, 格式:png、jpeg、jpg、gif、bmp</p>
+
+                        <div class="btn">
+                            <span>添加图片</span>
+                            <input class="fileupload"  type="file" name="mypic">
+
+                        </div>
+                        <div class="progress">
+                            <span class="bar"></span><span class="percent">0%</span>
+                        </div>
+                        <div class="files"><span class="delimg" rel="" style="display: none;">删除</span></div>
+                        <div class="showimg openImg"></div>
+                    </div>
+                </div>
+                <!--图文信息-->
+                <div class="np_c tab_c" style="display:none;">
+                    <!-- 新建之前 -->
+                    <div class="tw_box">
+                        <div class="tw_l_box fl_l">
+                            <div class="tit_box">
+                                <h1>设置标题</h1>
+
+                                <h2 class="nowTime" id="nowTime"></h2>
+
+                                <p class="showimg openImg"><img src="images/case.jpg"/></p>
+                            </div>
+                        </div>
+                        <div class="tw_r_box fl_r">
+                            <div class="tw_con">
+                                <dl>
+                                    <dt>标题（必填）：</dt>
+                                    <dd>
+                                        <div class="t_box"><input id="tw_tit" class="tc" type="text"/>
+
+                                            <div class="tj"><i class="d">0</i>/<i class="z">64</i><i class="cz"></i>
+                                            </div>
+                                        </div>
+                                        <p class="ts"></p>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>作者（选填）：</dt>
+                                    <dd>
+                                        <div class="t_box"><input class="tc" type="text"/>
+
+                                            <div class="tj"><i class="d">0</i>/<i class="z">64</i><i class="cz"></i>
+                                            </div>
+                                            <p class="ts"></p>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>封面：</dt>
+                                    <dd>
+                                        <!-- 上传代码 -->
+                                        <div class="upload_box">
+                                            <p>说明：上传图片大小: 不超过10M, 格式:png、jpeg、jpg、gif、bmp</p>
+
+                                            <div class="btn">
+                                                <span>添加图片</span>
+                                                <input class="fileupload" type="file" name="mypic">
+                                            </div>
+                                            <div class="progress">
+                                                <span class="bar"></span><span class="percent">0%</span>
+                                            </div>
+                                            <div class="files"><span class="delimg" rel=""
+                                                                     style="display: none;">删除</span></div>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>摘要（选填）：</dt>
+                                    <dd>
+                                        <div class="t_box" style="border: none;padding:0;"><textarea name="textarea"
+                                                                                                     id="TextArea1"
+                                                                                                     class="tc ac"
+                                                                                                     cols="45"
+                                                                                                     rows="5"></textarea>
+
+                                            <div class="tj">
+                                                <div id="wordCheck"></div>
+                                                <i class="d">0</i>/<i class="z">120</i><i class="cz"></i></div>
+                                            <p class="ts"></p>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>活动链接（必填）：</dt>
+                                    <dd>
+                                        <div class="act_link" id="act_link"><input type="text"/></div>
+                                        <div class="ts"></div>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <div class="submit_box"><input type="button" value="预 览"/></div>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="submit_box"><input type="button" value="保 存"/><input class="fs" type="button" value="发 送"/>
+                </div>
+            </div>
+
+
+        </div>
+        <!--已发送-->
+        <div class="tab_box_c" style="display: none;">
+            <table id="send_log" class="send_log table table_hover table_fluid">
+                <caption></caption>
+                <thead>
+                <tr>
+                    <th style="width: 10%;">消息种类</th>
+                    <th>消息内容</th>
+                    <th style="width: 15%;">群发对象</th>
+                    <th style="width: 9%;">发送时间</th>
+                    <th style="width: 5%;">操作人</th>
+                </tr>
+                </thead>
+                <tbody class="typo_center">
+                <tr>
+                    <td>文字消息</td>
+                    <td>
+                        <div class="disc" onclick="showTxt();">尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生</div>
+                    </td>
+                    <td>深圳市北京大学深圳医院消化内科<br/>已认证<br/>咨询、VIP、加号、推荐</td>
+                    <td>18665824241</td>
+                    <td>莫莫</td>
+                </tr>
+                <tr>
+                    <td>图片消息</td>
+                    <td><img class="openImg" width="150" height="100" src="images/case.jpg"/></td>
+                    <td>所有用户</td>
+                    <td>18665824241</td>
+                    <td>莫莫</td>
+                </tr>
+                <tr>
+                    <td>图文消息</td>
+                    <td>【标题】<a href="http://t.cn/RZ6nbES">http://t.cn/RZ6nbES</a></td>
+                    <td>所有用户</td>
+                    <td>18665824241</td>
+                    <td>莫莫</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td class="typo_right" colspan="12">
+                        <div>共有<font color="#FF0000">299</font>条记录&nbsp;<a
+                                href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=1">首页</a> | <a
+                                href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=1">上一页</a> | <a
+                                href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=3">下一页</a> | <a
+                                href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=30">末页</a> &nbsp;&nbsp;<a
+                                href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=1">1</a> <font
+                                color="#FF0000">2</font> <a
+                                href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=3">3</a>
+                            <a href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=4">4</a> <a
+                                    href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=5">5</a> <a
+                                    href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=6">6</a> <a
+                                    href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=7">7</a></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+            <div class="submit_box"><input type="button" value="保 存"/><input class="fs" type="button" value="发 送"/>
+            </div>
+        </div>
+        <!-- 草稿箱 -->
+        <div class="tab_box_c" style="display: none;">
+            <table id="send_log" class="send_log table table_hover table_fluid">
+                <caption></caption>
+                <thead>
+                <tr>
+                    <th style="width: 10%;">消息种类</th>
+                    <th>消息内容</th>
+                    <th style="width: 15%;">操作</th>
+                    <th style="width: 9%;">上次修改时间</th>
+                    <th style="width: 5%;">操作人</th>
+                </tr>
+                </thead>
+                <tbody class="typo_center">
+                <tr>
+                    <td>文字消息</td>
+                    <td>
+                        <div class="disc" onclick="showTxt();">尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生尊敬的医生</div>
+                    </td>
+                    <td>
+                        <a style="color:blue;" href="#">编辑</a>&nbsp;&nbsp;<a class="ignore" style="color:blue;">删除</a>
+                    </td>
+                    <td>2015-04-25 11:02</td>
+                    <td>莫莫</td>
+                </tr>
+                <tr>
+                    <td>图片消息</td>
+                    <td><img class="openImg" width="150" height="100" src="images/case.jpg"/></td>
+                    <td>
+                        <a style="color:blue;" href="#">编辑</a>&nbsp;&nbsp;<a class="ignore" style="color:blue;">删除</a>
+                    </td>
+                    <td>2015-04-25 11:02</td>
+                    <td>莫莫</td>
+                </tr>
+                <tr>
+                    <td>图文消息</td>
+                    <td>【标题】<a href="http://t.cn/RZ6nbES">http://t.cn/RZ6nbES</a></td>
+                    <td>
+                        <a style="color:blue;" href="#">编辑</a>&nbsp;&nbsp;<a class="ignore" style="color:blue;">删除</a>
+                    </td>
+                    <td>2015-04-25 11:02</td>
+                    <td>莫莫</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td class="typo_right" colspan="12">
+                        <div>共有<font color="#FF0000">299</font>条记录&nbsp;<a
+                                href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=1">首页</a> | <a
+                                href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=1">上一页</a> | <a
+                                href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=3">下一页</a> | <a
+                                href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=30">末页</a> &nbsp;&nbsp;<a
+                                href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=1">1</a> <font
+                                color="#FF0000">2</font> <a
+                                href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=3">3</a>
+                            <a href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=4">4</a> <a
+                                    href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=5">5</a> <a
+                                    href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=6">6</a> <a
+                                    href="/index.php?c=DocUser&amp;a=viplist&amp;status=0&amp;p=7">7</a></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+            <div class="submit_box"><input type="button" value="保 存"/><input class="fs" type="button" value="发 送"/>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //输入剩余数功能
+    var ie = jQuery.support.htmlSerialize;
+    var $tex = $(".t_box .tc");
+    var $but = $(".but");
+    var str = 0;
+    var abcnum = 0;
+    var texts = 0;
+    //文本框字数计算和提示改变
+    if (ie) {
+        $tex[0].oninput = changeNum;
+        $tex[1].oninput = changeNum;
+        $tex[2].oninput = changeNum;
+    } else {
+        $tex[0].onpropertychange = changeNum;
+        $tex[1].onpropertychange = changeNum;
+        $tex[2].onpropertychange = changeNum;
+    }
+    function changeNum() {
+        var $inpCom = $(this);
+        var $num = $(this).next(".tj").find(".d");
+        var maxNum = $(this).next(".tj").find(".z").text() * 2;
+        var $cz = $(this).next(".tj").find(".cz");
+        //汉字的个数
+        str = ($inpCom.val().replace(/\w/g, "")).length;
+        //非汉字的个数
+        abcnum = $inpCom.val().length - str;
+        total = str * 2 + abcnum;
+        if (str * 2 + abcnum < maxNum) {
+            $but.removeClass()
+            $but.addClass("but");
+            texts = Math.ceil((str * 2 + abcnum) / 2);
+            $num.html(texts);
+        } else if (str * 2 + abcnum == maxNum) {
+            var mrVal = $(this).val().substr();
+            $cz.html(mrVal)
+        }
+        else if (str * 2 + abcnum > maxNum) {
+            var xzVal = $cz.text();
+            $(this).val(xzVal);
+            $num.html(maxNum / 2);
+        }
+    }
+    //验证表单是否为空
+    $(".submit_box input").click(function () {
+        if ($("#tw_tit").val() == '') {
+            $("#tw_tit").parents(".t_box").next(".ts").text("* 标题不能为空");
+        }
+        if ($("#act_link input").val() == '') {
+            $("#act_link").next(".ts").text("* 活动链接不能为空");
+        }
+    });
+    $(".t_box input").click(function () {
+        $(this).parents(".t_box").next(".ts").text("");
+    });
+    $("#act_link input").click(function () {
+        $("#act_link").next(".ts").text("");
+    });
+
+
+    $(function () {
+        //判断是否选择发送对象
+        $(".submit_box .fs").on("click",function(){
+            //定义选择对象
+            var formSel = $("#form1 select option:selected");
+            var formInp = $(".sel_box  input[type=checkbox]:checked");
+            //判断下拉框是否有选择
+            if (formSel.val() == "") {
+                if(formInp.size() == 0){
+                    $("#sel_ts").text("* 请至少选择一个发送对象");
+                }
+            } else {
+            }
+        })
+        //选择发送对象时清除提示
+        $(".sel_box").on("click",function(){
+            $("#sel_ts").text("");
+        });
+    })
+</script>
+<script type="text/javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/upload.js"></script>
+<!--发送弹出层-->
+<div class="float_box ans_box fl_fs" id="float_box1">
+    <div class="close"></div>
+    <h3>发送预览</h3>
+
+    <div class="num">
+        <p>请输入医生助手测试账号（手机号），此图文信息将发至该账号</p>
+        <input class="tel" type="text"/>
+        <input class="sub_btn" type="button" value="取消"/>
+        <input class="sub_btn" type="button" value="确定"/>
+    </div>
+</div>
+<!--文字弹出层-->
+<div class="float_box ans_box fl_txt" id="float_box2">
+    <div class="close"></div>
+    <h3>文字消息</h3>
+
+    <p>
+        《爸爸去哪儿》上周五晚节目播出后一段几秒钟的预告片中，胡军以戴假发化浓妆的女装造型短暂亮相，让观众直呼“闪瞎眼”，纷纷在网上评论“不敢直视”。据悉，胡军这一身“惊悚”造型将会出现在本周五晚《爸爸去哪儿》的“大象选美”环节，五位萌娃本期将变身小化妆师脑洞大开为老爸装扮，假发、长裙、大浓妆，爸爸变身“雷人美少妇”，全场爆笑不断，五位老爸谁将拔得头筹获得大象的“青睐”令人期待。
+
+        胡军大侠变身“如花” 刘烨调侃“师哥美”
+
+        本周节目中，大侠胡军首次男扮女装秒变“如花”，笑果惊人，预告片中尽管只是惊鸿一瞥已让人印象深刻。在儿子胡皓康的打造下，胡军身穿黑裙，头戴凌乱的假发套，脸上过厚的粉底配上烈焰红唇大红色十分“惊悚”，咧着嘴角大喊“胡皓康”的模样更是让人忍俊不禁，网友逗趣调侃称：“烈焰红唇大白脸，粗壮身材惹人醉”。采访中胡军也大方透露：“我看康儿感兴趣，就豁出去了呗”，但看到其他老爸在一旁笑惨，胡军也颇为不淡定地感叹：“一世英名，毁于一化啊！”
+
+        相比胡军，其他老爸的造型也毫不逊色，傲娇小公举刘烨终于有机会变身“真公举”，全程嗨翻天任由诺一摆弄，还兴奋得自己穿肚兜化妆打扮，一亮相便“惊艳四座”。从陕西站一身民工装的“土帅”，到如今身着肚兜脸化大浓妆的“土美”，刘烨对自己的造型似乎颇为满意，各种摆pose抛媚眼，不停询问大家的意见以求得到肯定，甚至十分认真地问儿子：“爸爸好看还是妈妈好看？”惹得诺一一脸尴尬不知如何作答，调侃完萌娃，刘烨还不忘故意打趣胡军说“师哥你太美了”，引得现场又是一阵爆笑。
+
+        林永健女妆扮相成“颜皇” 拳王变“美少妇”</p>
+</div>
+<!--图片弹出层-->
+<div class='float_box ans_box fl_pic' id='float_box3' style='left:50%;'>
+    <div class='close'></div>
+    <img src='images/case.jpg'/></div>
+</body>
+</html>

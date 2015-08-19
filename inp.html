@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+    <script src="global_files/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var $tex = $(".tex");
+	var $but = $(".but");
+	var ie = jQuery.support.htmlSerialize;
+	var str = 0;
+	var abcnum = 0;
+	var maxNum = 10;
+	var texts= 0;
+	var num = 0;
+	var sets = null;
+	
+	$tex.val("");
+	
+
+	//文本框字数计算和提示改变
+	if(ie){
+		$tex[0].oninput = changeNum;
+	}else{
+		$tex[0].onpropertychange  = changeNum;
+	}
+	
+	function changeNum(){
+		//汉字的个数
+		str = ($tex.val().replace(/\w/g,"")).length;
+		//非汉字的个数
+		abcnum = $tex.val().length-str;
+		
+		total = str*2+abcnum;
+
+        if(total >  maxNum || total == maxNum)
+        {
+            var num=$("#TextArea1").val().substr(0,maxNum);
+            $("#TextArea1").val(num);
+            alert("超过字数限制，多出的字将被截断！" );
+        }else {
+            $("#textCount").text(maxNum-$("#TextArea1").val().length);
+        }
+
+//		if(str*2+abcnum<maxNum || str*2+abcnum == maxNum){
+//				$but.removeClass()
+//				$but.addClass("but");
+//				texts =Math.ceil((maxNum - (str*2+abcnum))/2);
+//				$("p").html("您还可以输入的字数<span>"+texts+"</span>").children().css({"color":"blue"});
+//		}else if(str*2+abcnum>maxNum){
+//				$but.removeClass("")
+//				$but.addClass("grey");
+//				texts =Math.ceil(((str*2+abcnum)-maxNum)/2);
+//				$("p").html("您输入的字数超过了<span>"+texts+"</span>").children("span").css({"color":"red"});
+//		}
+	}
+	
+	//按钮点击
+//	$but.click(function(){
+//		if($(this).is(".grey")){
+//			sets = setInterval(flash,100);
+//			$tex.addClass("textColor");
+//		}
+//
+//		function flash(){
+//			num++;
+//			console.log(num);
+//			if(num >= 5){
+//				num=0;
+//				clearInterval(sets);
+//			}else if(num%2 == 1){
+//				$tex.addClass("textColor")
+//			}else{
+//				$tex.removeClass("textColor")
+//			}
+//		}
+//	})
+
+})
+</script>
+<style type="text/css">
+.box{
+	width:500px;
+	margin:10px auto;}
+
+*{
+	margin:0;
+	padding:0;
+	}
+	
+p span{
+	color:#069;
+	font-weight:bold;
+	}
+textarea{
+	width:300px;
+	}
+	
+.textColor{
+	background-color:#0C9;
+	}
+	
+.but{
+	background-color:#066;
+	padding:5px;
+	color:#FFF;
+	border:1px solid #999;}
+	
+.grey{
+	padding:5px;
+	color:#FFF;
+	background-color:#CCCCCC;}
+	
+	
+</style>
+</head>
+<body>
+<div class="box">
+	<p>请在下面输入您的文字：</p>
+	<textarea name="weibao" class="tex" cols="" rows="8"></textarea>
+	<input type="button" class="but" value="确定" />
+    <div id="textCount"></div>
+</div>
+</body>
+</html>
